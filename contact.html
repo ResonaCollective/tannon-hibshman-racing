@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Tannon Hibshman Racing</title>
+<meta name="description" content="Get in touch with Tannon Hibshman Racing about sponsorship, appearances, or general questions.">
+<meta name="keywords" content="Tannon Hibshman Racing Contact, Pennsylvania Road Racing">
+<link rel="canonical" href="https://tannonhibshmanracing.com/contact.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="contact">
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a href="index.html" class="brand"><span class="num">53</span> Tannon Hibshman Racing</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" data-nav="home">Home</a></li>
+        <li><a href="about.html" data-nav="about">About</a></li>
+        <li><a href="schedule.html" data-nav="schedule">Schedule</a></li>
+        <li><a href="gallery.html" data-nav="gallery">Gallery</a></li>
+        <li><a href="results.html" data-nav="results">Results</a></li>
+        <li><a href="sponsors.html" data-nav="sponsors">Sponsors</a></li>
+        <li><a href="contact.html" data-nav="contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="container">
+    <div class="eyebrow">Contact</div>
+    <h1>Get In Touch</h1>
+    <p>Questions about sponsorship, appearances, or the team? Send a message or reach out directly.</p>
+  </div>
+</div>
+
+<section class="section" style="border-bottom:none;">
+  <div class="container contact-grid">
+    <div>
+      <!--
+        This form uses FormSubmit (formsubmit.co), a free service that
+        emails form submissions straight to your inbox with no backend
+        required. The FIRST submission after publishing will send an
+        activation link to resonacollective@gmail.com — click it once
+        to start receiving messages. Swap the email in the action URL
+        below if you'd rather use a different inbox.
+      -->
+      <form action="https://formsubmit.co/resonacollective@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from Tannon Hibshman Racing site">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="Name" required>
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="Email" required>
+        </div>
+        <div class="form-field">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="Subject" placeholder="Sponsorship, appearance, general question...">
+        </div>
+        <div class="form-field">
+          <label for="message">Message</label>
+          <textarea id="message" name="Message" rows="6" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+
+    <div>
+      <div class="eyebrow">Connect</div>
+      <h2 style="margin-top:10px; font-size:1.5rem;">Find Us Elsewhere</h2>
+      <div class="social-list">
+        <a href="mailto:resonacollective@gmail.com">Email &mdash; resonacollective@gmail.com</a>
+        <a href="#" target="_blank" rel="noopener">Facebook &mdash; <em style="color:var(--gray);">add page link</em></a>
+        <a href="#" target="_blank" rel="noopener">Instagram &mdash; <em style="color:var(--gray);">add handle link</em></a>
+      </div>
+      <p style="color:var(--gray); font-size:0.85rem; margin-top:16px;">Update the Facebook/Instagram links in contact.html once those accounts are live.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-meta">&copy; <span id="footer-year"></span> Tannon Hibshman Racing. All rights reserved.</div>
+    <ul class="footer-nav">
+      <li><a href="index.html" data-nav="home">Home</a></li>
+      <li><a href="about.html" data-nav="about">About</a></li>
+      <li><a href="schedule.html" data-nav="schedule">Schedule</a></li>
+      <li><a href="gallery.html" data-nav="gallery">Gallery</a></li>
+      <li><a href="results.html" data-nav="results">Results</a></li>
+      <li><a href="sponsors.html" data-nav="sponsors">Sponsors</a></li>
+      <li><a href="contact.html" data-nav="contact">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="data/schedule-data.js"></script>
+<script src="data/sponsors-data.js"></script>
+<script src="data/gallery-data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
