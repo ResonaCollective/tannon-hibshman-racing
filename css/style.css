@@ -188,11 +188,17 @@ h1, h2, h3, h4 {
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  min-height: 88vh;
+  min-height: 62vh;
   display: flex;
   align-items: flex-end;
-  background: linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0.96) 100%), url('../images/victory-01.jpg') center 20%/cover no-repeat;
+  background: linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0) 55%, rgba(10,10,10,0.55) 100%), url('../images/hillclimb-531-side.jpg') center 45%/cover no-repeat;
 }
+
+.hero-headline { padding: 44px 0 32px; }
+.hero-headline .hero-inner { padding-bottom: 0; }
+.hero-headline h1 { margin-top: 0; }
+.hero-copy { padding-top: 40px; border-bottom: 1px solid var(--line); }
+.hero-copy .lede { margin-top: 14px; }
 
 .hero-inner {
   position: relative;
@@ -483,8 +489,14 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 720px) {
-  .nav-links { position: fixed; top: 65px; left: 0; right: 0; bottom: 0; background: var(--black); flex-direction: column; padding: 30px 24px; gap: 26px; transform: translateX(100%); transition: transform 0.25s ease; overflow-y: auto; }
+  /* backdrop-filter makes the header the containing block for the fixed
+     menu, which squashed it to one item. Turn it off on mobile. */
+  .site-header { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--black); }
+  .nav-links {
+    z-index: 150;
+    height: calc(100vh - 65px);
+    height: calc(100dvh - 65px); position: fixed; top: 65px; left: 0; right: 0; bottom: 0; background: var(--black); flex-direction: column; padding: 30px 24px; gap: 26px; transform: translateX(100%); transition: transform 0.25s ease; overflow-y: auto; }
   .nav-links.open { transform: translateX(0); }
   .nav-toggle { display: flex; }
-  .hero { min-height: 78vh; }
+  .hero { min-height: 40vh; }
 }

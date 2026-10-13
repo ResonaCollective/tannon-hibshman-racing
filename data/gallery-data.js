@@ -8,6 +8,11 @@
 
 const GALLERY = [
   {
+    src: "images/tannon-main.jpg",
+    category: "Paddock",
+    caption: "Sunset in the paddock with the #53 Mazda RX-7."
+  },
+  {
     src: "images/on-track-01.jpg",
     category: "On Track",
     caption: "Car #53 through the esses at Summit Point Motorsports Park."
@@ -18,25 +23,21 @@ const GALLERY = [
     caption: "Chasing the apex at Summit Point."
   },
   {
-    src: "images/victory-01.jpg",
-    category: "Victory Lane",
-    caption: "Podium celebration after a hard-fought race weekend."
-  },
-  {
     src: "images/victory-02.jpg",
     category: "Victory Lane",
     caption: "Tannon with the #53 Mazda RX-7 after the race."
   },
-  {
-    src: "images/victory-01.jpg",
-    category: "Car",
-    caption: "The #53 Mazda RX-7 — built and prepped for ITS competition."
-  },
-  {
-    src: "images/victory-02.jpg",
-    category: "Car",
-    caption: "Livery detail: Tire Rack, Hoosier, and Rotary Performance."
-  }
+  { src: "images/hillclimb-531-side.jpg", category: "On Track", caption: "Hillclimb run in the Mazda RX-7." },
+  { src: "images/hillclimb-531-fence.jpg", category: "On Track", caption: "Rotating through a corner at the hillclimb." },
+  { src: "images/on-track-03.jpg", category: "On Track", caption: "The #53 on track." },
+  { src: "images/on-track-04.jpg", category: "On Track", caption: "Side profile of the #53 at speed." },
+  { src: "images/on-track-05.jpg", category: "On Track", caption: "Turning in." },
+  { src: "images/on-track-06.jpg", category: "On Track", caption: "The #53 on the move." },
+  { src: "images/on-track-rear.jpg", category: "On Track", caption: "Chasing the apex." },
+  { src: "images/helmet-roof.jpg", category: "Behind the Scenes", caption: "A quiet moment before the session." },
+  { src: "images/gearing-up.jpg", category: "Behind the Scenes", caption: "Gearing up before a run." },
+  { src: "images/detail-scca.jpg", category: "Car", caption: "SCCA Club Racing decal on the nose." },
+  { src: "images/detail-wheel.jpg", category: "Car", caption: "Momo wheel and a reminder: never give up." }
 ];
 
 if (typeof module !== "undefined") { module.exports = GALLERY; }

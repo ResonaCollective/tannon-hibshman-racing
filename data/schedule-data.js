@@ -26,7 +26,7 @@
          finish: "3rd",
          fastestLap: "1:42.311",
          notes: "Great battle all weekend, car ran perfectly.",
-         photos: ["images/victory-01.jpg"]
+         photos: ["images/victory-02.jpg"]
        }
    That's it — the race will automatically show up on the Results
    page with everything filled in, and disappear from "Upcoming."
