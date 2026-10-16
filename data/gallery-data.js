@@ -33,8 +33,8 @@ const GALLERY = [
   { src: "images/on-track-04.jpg", category: "On Track", caption: "Side profile of the #53 at speed." },
   { src: "images/on-track-05.jpg", category: "On Track", caption: "Turning in." },
   { src: "images/on-track-06.jpg", category: "On Track", caption: "The #53 on the move." },
-  { src: "images/on-track-rear.jpg", category: "On Track", caption: "Chasing the apex." },
-  { src: "images/helmet-roof.jpg", category: "Behind the Scenes", caption: "A quiet moment before the session." },
+  { src: "images/on-track-rear.jpg", category: "On Track", caption: "Heading into the next corner." },
+  { src: "images/helmet-roof.jpg", category: "Behind the Scenes", caption: "Getting ready before a session." },
   { src: "images/gearing-up.jpg", category: "Behind the Scenes", caption: "Gearing up before a run." },
   { src: "images/detail-scca.jpg", category: "Car", caption: "SCCA Club Racing decal on the nose." },
   { src: "images/detail-wheel.jpg", category: "Car", caption: "Momo wheel and a reminder: never give up." }

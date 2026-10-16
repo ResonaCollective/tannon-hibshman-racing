@@ -191,8 +191,52 @@ h1, h2, h3, h4 {
   min-height: 62vh;
   display: flex;
   align-items: flex-end;
-  background: linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0) 55%, rgba(10,10,10,0.55) 100%), url('../images/hillclimb-531-side.jpg') center 45%/cover no-repeat;
+  overflow: hidden;
+  background: #0a0a0a;
 }
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0) 55%, rgba(10,10,10,0.55) 100%);
+  pointer-events: none;
+}
+
+.hero-stripe { z-index: 1; }
+
+.hero-sound {
+  position: absolute;
+  right: 20px;
+  bottom: 26px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(245,245,245,0.35);
+  border-radius: 999px;
+  background: rgba(10,10,10,0.6);
+  color: var(--white);
+  font: inherit;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.hero-sound:hover { background: var(--red); border-color: var(--red); }
+.hero-sound svg { width: 20px; height: 20px; }
+.hero-sound .icon-sound,
+.hero-sound[aria-pressed="true"] .icon-muted { display: none; }
+.hero-sound[aria-pressed="true"] .icon-sound { display: block; }
 
 .hero-headline { padding: 44px 0 32px; }
 .hero-headline .hero-inner { padding-bottom: 0; }
@@ -345,7 +389,7 @@ h1, h2, h3, h4 {
 /* ---------- Stats strip ---------- */
 .stats-strip {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 24px;
   text-align: center;
 }
@@ -500,3 +544,7 @@ h1, h2, h3, h4 {
   .nav-toggle { display: flex; }
   .hero { min-height: 40vh; }
 }
+
+.results-summary { margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+.results-summary:empty { display: none; }
+.contact-single > div { max-width: 640px; }

@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=7">
 </head>
 <body data-page="home">
 
@@ -42,7 +42,15 @@
   </div>
 </section>
 
-<section class="hero" role="img" aria-label="Tannon Hibshman's Mazda RX-7 racing up a hillclimb course">
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="images/hero-poster.jpg" aria-label="Tannon Hibshman's Mazda RX-7 racing up a hillclimb course">
+    <source src="videos/hero.mp4" type="video/mp4">
+  </video>
+  <button class="hero-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
+    <svg class="icon-muted" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+    <svg class="icon-sound" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+    <span class="hero-sound-label">Sound on</span>
+  </button>
   <div class="hero-stripe"></div>
 </section>
 
@@ -86,21 +94,20 @@
     <div class="card-grid">
       <div class="card">
         <div class="eyebrow">2026 Season</div>
-        <h3 style="margin-top:10px; font-size:1.2rem;">Full 2026 Schedule Announced</h3>
-        <p style="color:var(--gray-light); margin-top:10px;">Five events across Pennsylvania and West Virginia this season, including two hillclimbs and three MARRS road racing weekends at Summit Point.</p>
+        <h3 style="margin-top:10px; font-size:1.2rem;">Two Wins and Five Podiums</h3>
+        <p style="color:var(--gray-light); margin-top:10px;">Tannon finished on the podium in all five of his 2026 races, including wins at Pagoda in June and Summit Point in July. <a href="results.html" style="color:var(--red);">See every result.</a></p>
       </div>
       <div class="card">
-        <div class="eyebrow">Behind The Wheel</div>
-        <h3 style="margin-top:10px; font-size:1.2rem;">Prepping the #53 for 2026</h3>
-        <p style="color:var(--gray-light); margin-top:10px;">The Mazda RX-7 is back in the shop and ready for another season of ITS competition. Follow the build in the Gallery.</p>
+        <div class="eyebrow">Licensed</div>
+        <h3 style="margin-top:10px; font-size:1.2rem;">Novice Permit to Full License</h3>
+        <p style="color:var(--gray-light); margin-top:10px;">Tannon started 2026 on an SCCA Novice Permit and ended it with his full competition license. <a href="about.html" style="color:var(--red);">Read more.</a></p>
       </div>
       <div class="card">
-        <div class="eyebrow">Get Involved</div>
-        <h3 style="margin-top:10px; font-size:1.2rem;">Sponsorship Opportunities Open</h3>
-        <p style="color:var(--gray-light); margin-top:10px;">Interested in putting your brand on track? Check out the Sponsors page for current partners and opportunities.</p>
+        <div class="eyebrow">2027</div>
+        <h3 style="margin-top:10px; font-size:1.2rem;">New Tires, New Season</h3>
+        <p style="color:var(--gray-light); margin-top:10px;">The #53 is getting new tires over the winter and will be back racing in 2027. Want your logo on the car? <a href="sponsors.html" style="color:var(--red);">See sponsorship options.</a></p>
       </div>
     </div>
-    <p style="margin-top:10px; color:var(--gray); font-size:0.85rem;">(News/blog section — easy to expand with full posts later.)</p>
   </div>
 </section>
 
@@ -123,7 +130,7 @@
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">Partners</div>
-      <h2>Current Sponsors</h2>
+      <h2>2026 Sponsor</h2>
     </div>
     <div class="sponsor-grid" id="sponsor-strip"></div>
     <div class="text-center mt-lg"><a href="sponsors.html" class="btn btn-outline btn-sm">Become A Sponsor</a></div>
@@ -133,10 +140,10 @@
 <section class="section" style="border-bottom:none;">
   <div class="container text-center">
     <div class="eyebrow">Follow The Journey</div>
-    <h2 style="margin-top:10px;">Ready To Follow Tannon's 2026 Season?</h2>
-    <p style="color:var(--gray-light); max-width:520px; margin:16px auto 0;">Check the schedule for the next event, catch up on results, or reach out about sponsorship.</p>
+    <h2 style="margin-top:10px;">Follow Tannon Into 2027</h2>
+    <p style="color:var(--gray-light); max-width:520px; margin:16px auto 0;">Catch up on his 2026 results, or get in touch about sponsoring the #53 next season.</p>
     <div class="hero-ctas" style="justify-content:center; margin-top:28px;">
-      <a href="schedule.html" class="btn btn-primary">View Schedule</a>
+      <a href="results.html" class="btn btn-primary">See Results</a>
       <a href="contact.html" class="btn btn-outline">Get In Touch</a>
     </div>
   </div>
@@ -162,9 +169,9 @@
   <div><img src="" alt=""><div class="cap"></div></div>
 </div>
 
-<script src="data/schedule-data.js"></script>
-<script src="data/sponsors-data.js"></script>
-<script src="data/gallery-data.js"></script>
-<script src="js/main.js"></script>
+<script src="data/schedule-data.js?v=7"></script>
+<script src="data/sponsors-data.js?v=7"></script>
+<script src="data/gallery-data.js?v=7"></script>
+<script src="js/main.js?v=7"></script>
 </body>
 </html>

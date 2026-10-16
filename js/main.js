@@ -133,7 +133,7 @@
             <span class="badge ${statusBadgeClass(status)}">${status}</span>
             <h3 style="margin-top:10px;">${race.eventName}</h3>
             <div class="series">${race.series}</div>
-            <div class="loc">${race.track} &mdash; ${race.city}, ${race.state}</div>
+            <div class="loc">${race.track}, ${race.city}, ${race.state}</div>
           </div>
           <div class="actions">
             ${trackBtn}
@@ -157,24 +157,27 @@
       return;
     }
 
+    const order = sortedSchedule().filter(r => r.result).map(r => r.id);
+
     el.innerHTML = races.map(race => {
       const d = formatRange(race.startDate, race.endDate);
+      const raceNum = order.indexOf(race.id) + 1;
       const r = race.result;
       const photos = (r.photos || []).map(p => `<img src="${p}" alt="${race.eventName} photo" data-lightbox="${p}" data-cap="${race.eventName}">`).join("");
       return `
         <div class="result-card" id="${race.id}">
           <div class="top">
             <div>
-              <div class="eyebrow">${d.month} ${d.range}, ${d.year}</div>
+              <div class="eyebrow">Race ${raceNum} &middot; ${d.month} ${d.range}, ${d.year}</div>
               <h3 style="margin-top:8px;">${race.eventName}</h3>
-              <div class="loc" style="color:var(--gray-light); margin-top:4px;">${race.track}, ${race.city}, ${race.state} &mdash; ${race.series}</div>
+              <div class="loc" style="color:var(--gray-light); margin-top:4px;">${race.track}, ${race.city}, ${race.state} &middot; ${race.series}</div>
             </div>
             <span class="badge badge-completed">Completed</span>
           </div>
           <div class="result-stats">
-            <div><div class="stat-label">Class</div><div class="stat-value">${r.class || "&ndash;"}</div></div>
-            <div><div class="stat-label">Finish</div><div class="stat-value">${r.finish || "&ndash;"}</div></div>
-            <div><div class="stat-label">Fastest Lap</div><div class="stat-value">${r.fastestLap || "&ndash;"}</div></div>
+            ${r.class ? `<div><div class="stat-label">Class</div><div class="stat-value">${r.class}</div></div>` : ""}
+            ${r.finish ? `<div><div class="stat-label">Finish</div><div class="stat-value">${r.finish}</div></div>` : ""}
+            ${r.fastestLap ? `<div><div class="stat-label">Fastest Lap</div><div class="stat-value">${r.fastestLap}</div></div>` : ""}
           </div>
           ${r.notes ? `<p class="result-notes">${r.notes}</p>` : ""}
           ${photos ? `<div class="result-photos">${photos}</div>` : ""}
@@ -258,25 +261,67 @@
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") lb.classList.remove("open"); });
   }
 
+  /* ---------------- Season stats ---------------- */
+  function finishPlace(r) {
+    return parseInt(r.result && r.result.finish, 10);
+  }
+
+  function seasonStats() {
+    const done = SCHEDULE.filter(r => r.result);
+    return {
+      completed: done.length,
+      wins: done.filter(r => finishPlace(r) === 1).length,
+      podiums: done.filter(r => finishPlace(r) <= 3).length
+    };
+  }
+
+  function renderResultsSummary() {
+    const el = document.getElementById("results-summary");
+    if (!el) return;
+    const s = seasonStats();
+    if (!s.completed) return;
+    el.innerHTML = `
+      <div class="stat"><h3>${s.completed}</h3><p>Races Completed</p></div>
+      <div class="stat"><h3>${s.wins}</h3><p>Wins</p></div>
+      <div class="stat"><h3>${s.podiums}</h3><p>Podium Finishes</p></div>
+    `;
+  }
+
   /* ---------------- Quick stats (home) ---------------- */
   function renderQuickStats() {
     const el = document.getElementById("quick-stats");
     if (!el) return;
-    const completed = SCHEDULE.filter(r => r.result).length;
-    const total = SCHEDULE.length;
+    const s = seasonStats();
     el.innerHTML = `
-      <div class="stat"><h3>${total}</h3><p>2026 Events</p></div>
-      <div class="stat"><h3>${completed}</h3><p>Races Completed</p></div>
+      <div class="stat"><h3>${s.completed}</h3><p>Races Completed</p></div>
+      <div class="stat"><h3>${s.wins}</h3><p>Wins</p></div>
+      <div class="stat"><h3>${s.podiums}</h3><p>Podiums</p></div>
       <div class="stat"><h3>ITS</h3><p>SCCA Class</p></div>
       <div class="stat"><h3>#53</h3><p>Car Number</p></div>
     `;
   }
 
+  function initHeroSound() {
+    const btn = document.querySelector(".hero-sound");
+    const video = document.querySelector(".hero-video");
+    if (!btn || !video) return;
+    const label = btn.querySelector(".hero-sound-label");
+    btn.addEventListener("click", () => {
+      video.muted = !video.muted;
+      if (!video.muted) video.play();
+      btn.setAttribute("aria-pressed", String(!video.muted));
+      btn.setAttribute("aria-label", video.muted ? "Turn sound on" : "Turn sound off");
+      label.textContent = video.muted ? "Sound on" : "Sound off";
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     initNav();
+    initHeroSound();
     renderNextRace();
     renderSchedule();
     renderResults();
+    renderResultsSummary();
     renderGallery();
     renderSponsors();
     renderSponsorStrip();

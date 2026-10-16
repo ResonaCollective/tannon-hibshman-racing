@@ -50,7 +50,10 @@ const SCHEDULE = [
     startDate: "2026-06-20",
     endDate: "2026-06-21",
     trackInfoUrl: "https://www.motorsportreg.com/orgs/scca/blue-mountain",
-    result: null
+    result: {
+      class: "ITS",
+      finish: "1st"
+    }
   },
   {
     id: "summit-point-july-2026",
@@ -62,7 +65,10 @@ const SCHEDULE = [
     startDate: "2026-07-18",
     endDate: "2026-07-19",
     trackInfoUrl: "https://summitpointmp.com",
-    result: null
+    result: {
+      class: "ITS",
+      finish: "1st"
+    }
   },
   {
     id: "duryea-2026",
@@ -74,7 +80,10 @@ const SCHEDULE = [
     startDate: "2026-08-15",
     endDate: "2026-08-16",
     trackInfoUrl: "https://www.motorsportreg.com/orgs/scca/blue-mountain",
-    result: null
+    result: {
+      class: "ITS",
+      finish: "3rd"
+    }
   },
   {
     id: "summit-point-sept-2026",
@@ -86,7 +95,10 @@ const SCHEDULE = [
     startDate: "2026-09-05",
     endDate: "2026-09-07",
     trackInfoUrl: "https://summitpointmp.com",
-    result: null
+    result: {
+      class: "ITS",
+      finish: "2nd"
+    }
   },
   {
     id: "summit-point-oct-2026",
@@ -98,7 +110,10 @@ const SCHEDULE = [
     startDate: "2026-10-10",
     endDate: "2026-10-11",
     trackInfoUrl: "https://summitpointmp.com",
-    result: null
+    result: {
+      class: "ITS",
+      finish: "2nd"
+    }
   }
 ];
 
