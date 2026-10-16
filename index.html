@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=7">
+<link rel="stylesheet" href="css/style.css?v=14">
 </head>
 <body data-page="home">
 
@@ -42,16 +42,24 @@
   </div>
 </section>
 
-<section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="images/hero-poster.jpg" aria-label="Tannon Hibshman's Mazda RX-7 racing up a hillclimb course">
-    <source src="videos/hero.mp4" type="video/mp4">
-  </video>
-  <button class="hero-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
-    <svg class="icon-muted" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-    <svg class="icon-sound" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-    <span class="hero-sound-label">Sound on</span>
-  </button>
-  <div class="hero-stripe"></div>
+<section class="hero-wrap">
+  <div class="container">
+    <div class="frame hero-frame">
+      <div class="hero">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="images/hero-poster.jpg" aria-label="Tannon Hibshman's Mazda RX-7 racing up a hillclimb course">
+          <source src="videos/hero.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-bar">
+        <div class="hero-stripe"></div>
+        <button class="hero-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
+          <svg class="icon-muted" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+          <svg class="icon-sound" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+          <span class="hero-sound-label">Sound on</span>
+        </button>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="hero-copy">
@@ -65,11 +73,22 @@
   </div>
 </section>
 
+<section class="section motto">
+  <div class="container motto-grid">
+    <img class="frame" src="images/motto-console.jpg" alt="The steering wheel of Tannon's #53 Mazda RX-7, with Never Give Up on the center console" loading="lazy">
+    <div>
+      <div class="eyebrow">His Motto</div>
+      <h2 class="motto-title">Never<br>Give Up.</h2>
+      <p class="motto-text">It's written on the center console of the #53, right below the steering wheel, so Tannon sees it every time he's on track.</p>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">Up Next</div>
-      <h2>Next Race Weekend</h2>
+      <div class="eyebrow" id="next-race-eyebrow">Up Next</div>
+      <h2 id="next-race-title">Next Race Weekend</h2>
     </div>
     <div class="next-race" id="next-race-widget"></div>
   </div>
@@ -82,6 +101,7 @@
       <h2>2026 Season</h2>
     </div>
     <div class="stats-strip" id="quick-stats"></div>
+    <div class="season-timeline" id="season-timeline"></div>
   </div>
 </section>
 
@@ -104,8 +124,8 @@
       </div>
       <div class="card">
         <div class="eyebrow">2027</div>
-        <h3 style="margin-top:10px; font-size:1.2rem;">New Tires, New Season</h3>
-        <p style="color:var(--gray-light); margin-top:10px;">The #53 is getting new tires over the winter and will be back racing in 2027. Want your logo on the car? <a href="sponsors.html" style="color:var(--red);">See sponsorship options.</a></p>
+        <h3 style="margin-top:10px; font-size:1.2rem;">Sponsor the #53 in 2027</h3>
+        <p style="color:var(--gray-light); margin-top:10px;">Logo spots on the car are open for next season. <a href="sponsors.html" style="color:var(--red);">See sponsorship options.</a></p>
       </div>
     </div>
   </div>
@@ -152,15 +172,12 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-meta">&copy; <span id="footer-year"></span> Tannon Hibshman Racing. All rights reserved.</div>
-    <ul class="footer-nav">
-      <li><a href="index.html" data-nav="home">Home</a></li>
-      <li><a href="about.html" data-nav="about">About</a></li>
-      <li><a href="schedule.html" data-nav="schedule">Schedule</a></li>
-      <li><a href="gallery.html" data-nav="gallery">Gallery</a></li>
-      <li><a href="results.html" data-nav="results">Results</a></li>
-      <li><a href="sponsors.html" data-nav="sponsors">Sponsors</a></li>
-      <li><a href="contact.html" data-nav="contact">Contact</a></li>
-    </ul>
+  </div>
+  <div class="container footer-credit">
+    <a href="https://resonacollective.com" target="_blank" rel="noopener">
+      <img src="images/resona-icon.png" width="36" height="35" alt="" loading="lazy">
+      <span>Website designed &amp; managed by <strong>Resona Collective</strong></span>
+    </a>
   </div>
 </footer>
 
@@ -169,9 +186,9 @@
   <div><img src="" alt=""><div class="cap"></div></div>
 </div>
 
-<script src="data/schedule-data.js?v=7"></script>
-<script src="data/sponsors-data.js?v=7"></script>
-<script src="data/gallery-data.js?v=7"></script>
-<script src="js/main.js?v=7"></script>
+<script src="data/schedule-data.js?v=14"></script>
+<script src="data/sponsors-data.js?v=14"></script>
+<script src="data/gallery-data.js?v=14"></script>
+<script src="js/main.js?v=14"></script>
 </body>
 </html>

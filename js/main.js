@@ -88,11 +88,15 @@
     if (!el) return;
     const race = getNextRace();
     if (!race) {
-      el.innerHTML = `<div class="empty-state">No races currently scheduled. Check back soon.</div>`;
+      renderOffSeason(el);
       return;
     }
     const d = formatRange(race.startDate, race.endDate);
     const status = getStatus(race);
+    const days = Math.round((parseDate(race.startDate) - today()) / 86400000);
+    const countdown = status === "Race Weekend" ? "It's race weekend!"
+      : days === 1 ? "Next race is tomorrow"
+      : `Next race in <strong>${days}</strong> days`;
     el.innerHTML = `
       <div class="date-block">
         <div class="month">${d.month}</div>
@@ -103,9 +107,34 @@
           <span class="badge ${statusBadgeClass(status)}">${status}</span>
           <h3 style="margin-top:10px;">${race.eventName}</h3>
           <div class="meta">${race.series} &middot; ${race.track}, ${race.city}, ${race.state}</div>
+          <div class="countdown">${countdown}</div>
         </div>
       </div>
       <a class="btn btn-outline btn-sm" href="schedule.html">Full Schedule</a>
+    `;
+  }
+
+  /* Shown when every race on the schedule is over. Add next season's
+     races to data/schedule-data.js and the countdown takes over again. */
+  function renderOffSeason(el) {
+    const eyebrow = document.getElementById("next-race-eyebrow");
+    const title = document.getElementById("next-race-title");
+    const nextYear = today().getFullYear() + 1;
+    if (eyebrow) eyebrow.textContent = "Off-Season";
+    if (title) title.textContent = `Back in ${nextYear}`;
+    el.innerHTML = `
+      <div class="date-block">
+        <div class="month">Season</div>
+        <div class="day">${nextYear}</div>
+      </div>
+      <div class="next-race-info">
+        <div>
+          <span class="badge badge-raceweekend">Off-Season</span>
+          <h3 style="margin-top:10px;">New Tires, New Season</h3>
+          <div class="meta">The #53 is getting new tires this winter. ${nextYear} race dates are coming soon.</div>
+        </div>
+      </div>
+      <a class="btn btn-outline btn-sm" href="results.html">${nextYear - 1} Results</a>
     `;
   }
 
@@ -287,6 +316,33 @@
     `;
   }
 
+  /* ---------------- Season timeline ---------------- */
+  function shortRaceName(race) {
+    if (/hillclimb/i.test(race.eventName)) return race.eventName.replace(/ Hillclimb$/i, "");
+    return race.track.replace(/ Motorsports Park$/i, "");
+  }
+
+  function renderSeasonTimeline() {
+    const el = document.getElementById("season-timeline");
+    if (!el) return;
+    const races = sortedSchedule().filter(r => r.result);
+    if (!races.length) return;
+    el.innerHTML = `<ol class="timeline-track">${races.map((race, i) => {
+      const place = finishPlace(race);
+      const cls = place === 1 ? "win" : place <= 3 ? "podium" : "";
+      const d = parseDate(race.startDate);
+      return `
+        <li class="timeline-stop">
+          <a href="results.html#${race.id}">
+            <span class="timeline-badge ${cls}">${place ? "P" + place : "&#10003;"}</span>
+            <span class="timeline-race">Race ${i + 1}</span>
+            <span class="timeline-name">${shortRaceName(race)}</span>
+            <span class="timeline-date">${MONTHS[d.getMonth()]} ${d.getDate()}</span>
+          </a>
+        </li>`;
+    }).join("")}</ol>`;
+  }
+
   /* ---------------- Quick stats (home) ---------------- */
   function renderQuickStats() {
     const el = document.getElementById("quick-stats");
@@ -299,6 +355,50 @@
       <div class="stat"><h3>ITS</h3><p>SCCA Class</p></div>
       <div class="stat"><h3>#53</h3><p>Car Number</p></div>
     `;
+  }
+
+  /* ---------------- Motion ---------------- */
+  /* Sections fade up as they scroll into view, and whole-number stats
+     count up from zero. Skipped entirely for visitors who have
+     "reduce motion" turned on. */
+  function initMotion() {
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const reveal = document.querySelectorAll(".section .container, .hero-copy .hero-inner, .timeline-stop");
+    reveal.forEach((el) => {
+      el.classList.add("reveal");
+      const stop = el.closest(".timeline-stop");
+      if (stop) el.style.transitionDelay = `${[...stop.parentNode.children].indexOf(stop) * 120}ms`;
+    });
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        revealObs.unobserve(entry.target);
+      });
+    }, { threshold: 0.12 });
+    reveal.forEach((el) => revealObs.observe(el));
+
+    const counters = [...document.querySelectorAll(".stats-strip .stat h3")].filter(h => /^\d+$/.test(h.textContent.trim()));
+    const countObs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        countObs.unobserve(entry.target);
+        const el = entry.target;
+        const end = parseInt(el.textContent, 10);
+        const duration = 1200;
+        const start = performance.now();
+        const step = (now) => {
+          const p = Math.min((now - start) / duration, 1);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        el.textContent = "0";
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach((el) => countObs.observe(el));
   }
 
   function initHeroSound() {
@@ -322,11 +422,13 @@
     renderSchedule();
     renderResults();
     renderResultsSummary();
+    renderSeasonTimeline();
     renderGallery();
     renderSponsors();
     renderSponsorStrip();
     renderQuickStats();
     initLightboxClose();
     initLightboxTriggers();
+    initMotion();
   });
 })();
