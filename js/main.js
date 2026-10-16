@@ -250,21 +250,27 @@
   }
 
   /* ---------------- Sponsors page ---------------- */
+  /* Each sponsor sits in a "spotlight": the name (or logo) between two
+     thin lines with red accents, under an Official Sponsor label. */
+  function sponsorSpotlight(s) {
+    const inner = `
+      <span class="sponsor-label">Official Sponsor</span>
+      ${s.logo ? `<img src="${s.logo}" alt="${s.name}">` : `<span class="sponsor-name">${s.name}</span>`}`;
+    return s.url
+      ? `<a class="sponsor-spot" href="${s.url}" target="_blank" rel="noopener">${inner}</a>`
+      : `<div class="sponsor-spot">${inner}</div>`;
+  }
+
   function renderSponsors() {
     const grid = document.getElementById("sponsor-grid");
     if (!grid) return;
-    grid.innerHTML = SPONSORS.map(s => {
-      const inner = s.logo ? `<img src="${s.logo}" alt="${s.name}">` : s.name;
-      return s.url
-        ? `<a class="sponsor-badge" href="${s.url}" target="_blank" rel="noopener">${inner}</a>`
-        : `<div class="sponsor-badge">${inner}</div>`;
-    }).join("");
+    grid.innerHTML = SPONSORS.map(sponsorSpotlight).join("");
   }
 
   function renderSponsorStrip() {
     const el = document.getElementById("sponsor-strip");
     if (!el) return;
-    el.innerHTML = SPONSORS.map(s => `<div class="sponsor-badge">${s.name}</div>`).join("");
+    el.innerHTML = SPONSORS.map(sponsorSpotlight).join("");
   }
 
   /* ---------------- Lightbox ---------------- */
