@@ -25,9 +25,10 @@ lightbox, mobile menu — works straight off your computer with no server needed
 
 ## How to publish it live
 
-The simplest free option is **Netlify Drop** (netlify.app/drop) or **GitHub Pages** — drag
-this whole folder in and it's live at a URL you can point a custom domain at (e.g.
-tannonhibshmanracing.com). Any static host works, since there's no database or backend.
+The site is hosted on Railway. Never publish this folder as-is: run `npm run build` first.
+It writes a clean copy to `dist/` with every code comment removed and only the public files
+included (no README, package.json or scripts), and the live server serves only `dist/`.
+Railway runs the build automatically on each deploy.
 
 ## Contact form
 

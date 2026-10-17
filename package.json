@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "serve -l $PORT ."
+    "build": "node scripts/build.mjs",
+    "start": "serve -l $PORT dist"
   },
   "dependencies": {
-    "serve": "^14.2.1"
+    "clean-css": "^5.3.3",
+    "html-minifier-terser": "^7.2.0",
+    "serve": "^14.2.1",
+    "terser": "^5.31.6"
   }
 }
